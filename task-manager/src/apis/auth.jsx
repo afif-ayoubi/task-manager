@@ -3,7 +3,7 @@ import { sendRequest } from "../Core/tools/request";
 import { requestMethods } from "../Core/Enums/requestMethods";
 
 export const signupUser = createAsyncThunk(
-  "auth/signupUser",
+  "auth/register",
   async (credentials, { rejectWithValue }) => {
     try {
       const resp = await sendRequest({
@@ -21,7 +21,7 @@ export const signupUser = createAsyncThunk(
   }
 );
 export const loginUser = createAsyncThunk(
-  "auth/loginUser",
+  "auth/login",
   async (credentials, { rejectWithValue }) => {
     try {
       const resp = await sendRequest({

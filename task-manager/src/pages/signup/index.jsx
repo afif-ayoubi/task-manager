@@ -2,7 +2,7 @@ import { Box, Button, TextField } from '@mui/material'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LoadingButton from '@mui/lab/LoadingButton'
-
+const dispatch = useDispatch();
 const Signup = () => {
   const navigate = useNavigate()
 
@@ -12,7 +12,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setErrors({ username: '', password: '', confirmPassword: '' }) // Reset errors
+    setErrors({ username: '', password: '', confirmPassword: '' }) 
 
     const data = new FormData(e.target)
     const username = data.get('username').trim()
@@ -41,8 +41,16 @@ const Signup = () => {
     if (err) return
 
     setLoading(true)
-
-    // Now you can use 'credentials.username', 'credentials.password', and 'credentials.confirmPassword' for your signup process
+    dispatch(loginUser(credentials)).then((results) => {
+      if (results.payload.status === "success") {
+        setCredentials({ email: "", password: "" });
+        navigate('/home');
+      } 
+    })
+    .catch((error) => {
+     
+    });
+    setLoading(false);
   }
 
   const handleFieldChange = (fieldName) => (e) => {
@@ -50,7 +58,7 @@ const Signup = () => {
       ...prevCredentials,
       [fieldName]: e.target.value,
     }))
-    setErrors(prevErrors => ({ ...prevErrors, [fieldName]: '' })) // Clear error when typing
+    setErrors(prevErrors => ({ ...prevErrors, [fieldName]: '' })) 
   }
 
   return (

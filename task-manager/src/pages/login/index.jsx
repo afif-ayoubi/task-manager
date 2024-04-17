@@ -2,7 +2,7 @@ import { Box, Button, TextField } from '@mui/material'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LoadingButton from '@mui/lab/LoadingButton'
-
+const dispatch = useDispatch();
 const Login = () => {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
