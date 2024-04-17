@@ -6,7 +6,8 @@ require("dotenv").config();
 const PORT = process.env.PORT;
 const authRoutes = require("./routes/auth");
 app.use("/auth", authRoutes);
-
+const boardRoutes = require("./routes/board");
+app.use("/board", boardRoutes);
 app.listen(PORT, (err) => {
   if (err) throw new Error(err);
   console.log(`Server is running on port ${PORT}`);
