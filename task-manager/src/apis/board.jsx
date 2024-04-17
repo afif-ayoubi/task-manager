@@ -3,7 +3,7 @@ import { sendRequest } from "../Core/tools/request";
 import { requestMethods } from "../Core/Enums/requestMethods";
 
 
-export const createBoard = createAsyncThunk(
+export const createBoardapi = createAsyncThunk(
   "board/create",
   async (boardData, { rejectWithValue }) => {
     try {

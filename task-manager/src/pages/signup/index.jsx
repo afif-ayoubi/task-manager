@@ -2,6 +2,7 @@ import { Box, Button, TextField } from '@mui/material'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import LoadingButton from '@mui/lab/LoadingButton'
+import { signupUser } from '../../apis/auth'
 const dispatch = useDispatch();
 const Signup = () => {
   const navigate = useNavigate()
@@ -41,7 +42,7 @@ const Signup = () => {
     if (err) return
 
     setLoading(true)
-    dispatch(loginUser(credentials)).then((results) => {
+    dispatch(signupUser(credentials)).then((results) => {
       if (results.payload.status === "success") {
         setCredentials({ email: "", password: "" });
         navigate('/home');
